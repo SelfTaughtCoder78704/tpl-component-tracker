@@ -1,0 +1,84 @@
+<%- include ("partials/header") %>
+<div class="jumbotron text-center">
+  <div class="custom">
+    <p>Create a new component</p>
+    <form action="/components/new" method="post">
+      <div class="form-group">
+        <label for="codeType">Select App Type:</label>
+        <select class="form-control" id="codeType" name="codeType">
+          <option value="rails">Rails</option>
+          <option value="next">Next</option>
+        </select>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          placeholder="Description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="html">HTML</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="html"
+          name="html"
+          placeholder="html"
+        ></textarea>
+        <label for="css">CSS</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="css"
+          name="css"
+          placeholder="css"
+        ></textarea>
+        <label for="js">JS</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="js"
+          name="js"
+          placeholder="js"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tags"
+          name="tags"
+          placeholder="Tags"
+        />
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="image"
+          placeholder="Image"
+          value="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/330px-Two_red_dice_01.svg.png"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<%- include ("partials/footer") %>

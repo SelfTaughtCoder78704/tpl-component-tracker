@@ -1,0 +1,36 @@
+<%- include ("partials/header") %>
+<div class="jumbotron text-center">
+  <div class="custom">
+    <p class="lead mb-3">Your Components:</p>
+    <div class="row">
+      <% for (var i = 0; i < components.length; i++) { %>
+      <div class="col-*-">
+        <div
+          class="card"
+          style="
+            background: url(<%= components[i].image %>);
+            background-size: cover;
+            background-repeat: no-repeat;
+          "
+        >
+          <div
+            class="card-body"
+            style="background: rgba(0, 0, 0, 0.617); color: white"
+          >
+            <h5 class="card-title"><%= components[i].name %></h5>
+            <p class="card-text"><%= components[i].description %></p>
+            <a
+              href="/components/<%= components[i]._id %>"
+              class="btn btn-primary"
+              >See more</a
+            >
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<%- include ("partials/footer") %>
