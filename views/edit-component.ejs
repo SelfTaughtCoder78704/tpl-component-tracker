@@ -1,0 +1,90 @@
+<%- include ("partials/header") %>
+<div class="jumbotron text-center">
+  <div class="custom">
+    <p>Update Component</p>
+    <form method="POST" action="/components/<%= component._id %>?_method=PUT">
+      <div class="form-group">
+        <label for="codeType">Select App Type:</label>
+        <select class="form-control" id="codeType" name="codeType">
+          <option value="rails">Rails</option>
+          <option value="next">Next</option>
+        </select>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Name"
+          value="<%= component.name %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          placeholder="Description"
+          value="<%= component.description %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="html">HTML</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="html"
+          name="html"
+          placeholder="html"
+          value="<%= component.sanitizedCode.html %>"
+        ></textarea>
+        <label for="css">CSS</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="css"
+          name="css"
+          placeholder="css"
+          value="<%= component.sanitizedCode.css %>"
+        ></textarea>
+        <label for="js">JS</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="js"
+          name="js"
+          placeholder="js"
+          value="<%= component.sanitizedCode.js %>"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tags"
+          name="tags"
+          placeholder="Tags"
+          value="<%= component.tags %>"
+        />
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="image"
+          placeholder="Image"
+          value="<%= component.image %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<%- include ("partials/footer") %>

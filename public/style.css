@@ -1,0 +1,9 @@
+.code-section {
+  display: none;
+}
+.hidden {
+  min-height: 300px;
+}
+.show {
+  display: block;
+}

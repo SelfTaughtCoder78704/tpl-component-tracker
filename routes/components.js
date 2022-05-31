@@ -14,7 +14,7 @@ var loginValidate = [
 
 // get all components route
 router.get('/', ensureAuthenticated, (req, res) => {
-  Component.find({ user: req.user._id })
+  Component.find({})
     .then(components => {
       res.render('components', {
         components: components,
@@ -63,6 +63,62 @@ router.post('/new', ensureAuthenticated, loginValidate, (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+// edit form route
+router.get('/:id/edit', ensureAuthenticated, (req, res) => {
+  Component.findOne({ _id: req.params.id })
+    .then(component => {
+      res.render('edit-component', {
+        component: component,
+        user: req.user,
+      });
+    })
+});
+
+
+// find one component and update it route
+router.put('/:id', ensureAuthenticated, (req, res) => {
+  Component.findOne({ _id: req.params.id })
+    .then(component => {
+      component.codeType = req.body.codeType;
+      component.name = req.body.name;
+      component.description = req.body.description;
+      component.tags = req.body.tags;
+      component.image = req.body.image;
+      component.sanitizedCode = {
+        html: req.body.html,
+        css: req.body.css,
+        js: req.body.js
+      };
+      component.save();
+      res.redirect('/dashboard');
+    })
+    .catch(err => console.log(err));
+});
+
+
+// find one component and delete it route
+router.get('/:id/delete', ensureAuthenticated, (req, res) => {
+  Component.findOne({ _id: req.params.id })
+    .then(component => {
+      component.remove();
+      res.redirect('/dashboard');
+    })
+    .catch(err => console.log(err));
+});
+
+// find all components by name that partially match the search term
+router.post('/search', ensureAuthenticated, (req, res) => {
+  Component.find({ name: { $regex: req.body.search, $options: 'i' } })
+    .then(components => {
+      res.render('components', {
+        components: components,
+        user: req.user,
+      });
+    })
+});
+
+
 
 
 

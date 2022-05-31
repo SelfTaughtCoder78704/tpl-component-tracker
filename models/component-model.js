@@ -46,6 +46,7 @@ const componentSchema = new Schema({
 
 });
 
+componentSchema.set('timestamps', true);
 const Component = mongoose.model('component', componentSchema);
 
 module.exports = Component;

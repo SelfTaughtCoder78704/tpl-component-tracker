@@ -22,29 +22,51 @@
       alt="<%= component.name || '' %>"
       class="img-fluid w-25"
     />
-
-    <div class="code-section rounded bg-dark text-light p-2 mt-2">
-      <%= component.sanitizedCode.html || "" %>
-      <button class="btn btn-primary">Click to Copy</button>
+    <button id="showCodeOnDashboard" class="btn btn-success">Show Code</button>
+    <div class="hidden d-flex">
+      <div
+        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= component.sanitizedCode.html || "" %> </code>
+      </div>
+      <div
+        class="code-section rounded flex-column ml-2 mr-2 col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= component.sanitizedCode.css || "" %> </code>
+      </div>
+      <div
+        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= component.sanitizedCode.js || "" %> </code>
+      </div>
     </div>
-    <div class="code-section rounded bg-dark text-light p-2 mt-2">
-      <%= component.sanitizedCode.css || "" %>
-      <button class="btn btn-primary">Click to Copy</button>
-    </div>
-    <div class="code-section rounded bg-dark text-light p-2 mt-2">
-      <%= component.sanitizedCode.js || "" %>
-      <button class="btn btn-primary">Click to Copy</button>
-    </div>
-    <div class="btn-group mt-2 p-2 bg-light">
+    <% if(component.user == user.id){ %>
+    <div class="btn-group bg-light">
       <a href="/components/<%= component._id %>/edit" class="btn btn-warning"
         >Edit</a
       >
-      <a href="/components/<%= component._id %>/delete" class="btn btn-primary"
+      <a href="/components/<%= component._id %>/delete" class="btn btn-danger"
         >Delete</a
       >
     </div>
+    <% } %>
   </div>
 </div>
 
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+<script>
+  document
+    .getElementById("showCodeOnDashboard")
+    .addEventListener("click", function () {
+      this.textContent =
+        this.textContent === "Hide Code" ? "Show Code" : "Hide Code";
+      document.querySelectorAll(".code-section").forEach(function (el) {
+        el.classList.toggle("show");
+      });
+    });
+</script>
 <%- include ("partials/footer") %>

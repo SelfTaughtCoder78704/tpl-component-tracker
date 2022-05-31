@@ -2,12 +2,82 @@
 <div class="jumbotron text-center">
   <div class="custom">
     <h1 class="mt-4">Dashboard</h1>
+
     <p class="lead mb-3">WELCOME <%= user.firstName.toUpperCase() %></p>
-    <p class="lead mb-3">Your Components:</p>
-    <a href="/components" class="btn warning">See your components</a>
-    <a href="/components/new" class="btn">Create a new component</a>
+
+    <a href="/components" class="btn btn-warning">All components</a>
+    <a href="/components/new" class="btn btn-warning">Create a new component</a>
   </div>
 </div>
+<% if (newest.name) { %>
+<div class="card d-flex flex-column bg-white p-4 rounded">
+  <div class="card-body">
+    <h2 class="card-title">Newest Component Created</h2>
+    <p class="badge badge-danger align-self-end">
+      <%= newest.codeType.toUpperCase() %> App
+    </p>
+    <p class="lead">
+      Created by
+      <a href="mailto:<%= newestUser.email %>"><%= newestUser.email %></a>
+    </p>
 
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+    <h1 class="h1 mb-5"><%= newest.name.toUpperCase() || "" %></h1>
+
+    <p class="lead mt-2 mb-2">
+      <em><strong>Description</strong></em
+      >: <u><%= newest.description || "" %></u>
+    </p>
+
+    <p class="lead text-primary">
+      <strong>Tags: <%= newest.tags || "" %></strong>
+    </p>
+    <img
+      src="<%= newest.image || '' %>"
+      alt="<%= newest.name || '' %>"
+      class="img-fluid w-25"
+    />
+    <button id="showCodeOnDashboard" class="btn btn-success">Show Code</button>
+    <div class="hidden d-flex">
+      <div
+        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= newest.sanitizedCode.html || "" %> </code>
+      </div>
+      <div
+        class="code-section rounded flex-column ml-2 mr-2 col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= newest.sanitizedCode.css || "" %> </code>
+      </div>
+      <div
+        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
+      >
+        <button class="btn btn-primary">Click to Copy</button>
+        <code> <%= newest.sanitizedCode.js || "" %> </code>
+      </div>
+    </div>
+  </div>
+</div>
+<% if(newest.user == user.id){ %>
+<div class="btn-group bg-light">
+  <a href="/components/<%= newest._id %>/edit" class="btn btn-warning">Edit</a>
+  <a href="/components/<%= newest._id %>/delete" class="btn btn-danger"
+    >Delete</a
+  >
+</div>
+<% } %> <% } %>
+
+<script>
+  document
+    .getElementById("showCodeOnDashboard")
+    .addEventListener("click", function () {
+      this.textContent =
+        this.textContent === "Hide Code" ? "Show Code" : "Hide Code";
+      document.querySelectorAll(".code-section").forEach(function (el) {
+        el.classList.toggle("show");
+      });
+    });
+</script>
+
 <%- include ("partials/footer") %>

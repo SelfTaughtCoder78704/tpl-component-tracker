@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
-
+const methodOverride = require('method-override');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -49,9 +49,9 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 
 //BODY PARSER AND JSON PARSER
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json({ limit: '200mb' }));
+app.use(express.urlencoded({ limit: '200mb', extended: true }));
+app.use(methodOverride('_method'));
 //COOKIE PARSER
 app.use(cookieParser());
 
