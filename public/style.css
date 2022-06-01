@@ -1,9 +1,45 @@
 .code-section {
   display: none;
 }
+
+.not-hidden {
+  display: block !important;
+}
 .hidden {
   min-height: 300px;
 }
 .show {
   display: block;
 }
+
+.home {
+  min-height: 80vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .navbar {
+  background-color: #030303;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .active .nav-link {
+  color: #17a2b8 !important;
+} */
+
+/* .btn-danger {
+  color: #e83939;
+  background-color: #343a40;
+  border-color: #28a745;
+} */
+
+.black {
+  background-color: #030303;
+}
+/* 
+.card {
+  max-width: 253px;
+} */

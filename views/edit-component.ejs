@@ -1,7 +1,7 @@
 <%- include ("partials/header") %>
-<div class="jumbotron text-center">
-  <div class="custom">
-    <p>Update Component</p>
+<div class="myForm mt-5 container text-left">
+  <div class="card m-auto p-3 d-flex justify-content-center flex-column">
+    <h3 class="card-title">Update Component</h3>
     <form method="POST" action="/components/<%= component._id %>?_method=PUT">
       <div class="form-group">
         <label for="codeType">Select App Type:</label>

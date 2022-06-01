@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://kit.fontawesome.com/ddc34f2bbe.js"></script>
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
-    />
+    /> -->
+    <link rel="stylesheet" href="/bootstrap.min.css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Company Logo</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">TPL-CT</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -31,17 +32,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/"
+            <a class="nav-link text-success" href="/"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/components">Components</a>
+            <a class="nav-link text-success" href="/components">Components</a>
           </li>
           <li class="nav-item dropdown">
             <% if(!user){ %>
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link text-success dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -58,7 +59,7 @@
             </div>
             <% } else { %>
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link text-success dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -93,5 +94,29 @@
         </form>
       </div>
     </nav>
+
+    <script>
+      let url = window.location.href;
+      let path = url.split("/");
+      let page = path[path.length - 1];
+      let navItems = document.querySelectorAll(".nav-item");
+
+      // detect page url and set active class to the correct .nav-item by checking their children's href
+      window.onload = function () {
+        if (page == "") {
+          page = "/";
+        }
+        console.log(path);
+        console.log(page);
+        navItems.forEach((item) => {
+          console.log(item.querySelector(".nav-link").getAttribute("href"));
+          if (item.querySelector(".nav-link").getAttribute("href") == page) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      };
+    </script>
   </body>
 </html>

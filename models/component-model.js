@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const User = require('./user-model');
 
 
 const componentSchema = new Schema({
@@ -41,7 +41,7 @@ const componentSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'user'
     }
 
 });

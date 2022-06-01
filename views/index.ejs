@@ -1,7 +1,24 @@
 <%- include ('partials/header.ejs') %>
 
+<div class="home">
+  <div class="container text-center p-3 h-100">
+    <h1 class="display-4 text-danger">Welcome to TPL-Component Tracker</h1>
 
-<h1>INDEX</h1>
-
+    <% if(!user) { %>
+    <p class="lead text-success">
+      To get started please sign up or log in below:
+    </p>
+    <div class="btn-group bg-light rounded">
+      <a href="/users/register" class="btn mt-2 mb-2 ml-2 btn-warning"
+        >Sign up</a
+      >
+      <a href="/users/login" class="btn mt-2 mb-2 mr-2 btn-primary">Login</a>
+    </div>
+    <% } else { %>
+    <p class="lead text-success">Welcome back <%= user.firstName %>!</p>
+    <a href="/dashboard" class="btn btn-success">Dashboard</a>
+    <% } %>
+  </div>
+</div>
 
 <%- include( 'partials/footer.ejs') %>

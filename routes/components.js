@@ -7,7 +7,7 @@ const User = require('../models/user-model');
 
 
 // Validation rules.
-var loginValidate = [
+var codeSanitize = [
   check('code', 'Code is required').not().isEmpty().escape()
 ];
 
@@ -40,7 +40,7 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
 });
 
 // create component and save it to User route
-router.post('/new', ensureAuthenticated, loginValidate, (req, res) => {
+router.post('/new', ensureAuthenticated, codeSanitize, (req, res) => {
   const newComponent = {
     codeType: req.body.codeType,
     name: req.body.name,

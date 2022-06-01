@@ -1,83 +1,91 @@
 <%- include ("partials/header") %>
-<div class="jumbotron text-center">
+<div class="jumbotron jumbotron-fluid text-center">
   <div class="custom">
     <h1 class="mt-4">Dashboard</h1>
 
     <p class="lead mb-3">WELCOME <%= user.firstName.toUpperCase() %></p>
 
-    <a href="/components" class="btn btn-warning">All components</a>
-    <a href="/components/new" class="btn btn-warning">Create a new component</a>
-  </div>
-</div>
-<% if (newest.name) { %>
-<div class="card d-flex flex-column bg-white p-4 rounded">
-  <div class="card-body">
-    <h2 class="card-title">Newest Component Created</h2>
-    <p class="badge badge-danger align-self-end">
-      <%= newest.codeType.toUpperCase() %> App
-    </p>
-    <p class="lead">
-      Created by
-      <a href="mailto:<%= newestUser.email %>"><%= newestUser.email %></a>
-    </p>
-
-    <h1 class="h1 mb-5"><%= newest.name.toUpperCase() || "" %></h1>
-
-    <p class="lead mt-2 mb-2">
-      <em><strong>Description</strong></em
-      >: <u><%= newest.description || "" %></u>
-    </p>
-
-    <p class="lead text-primary">
-      <strong>Tags: <%= newest.tags || "" %></strong>
-    </p>
-    <img
-      src="<%= newest.image || '' %>"
-      alt="<%= newest.name || '' %>"
-      class="img-fluid w-25"
-    />
-    <button id="showCodeOnDashboard" class="btn btn-success">Show Code</button>
-    <div class="hidden d-flex">
-      <div
-        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
+    <div
+      class="black container rounded text-center justify-content-center d-flex p-2"
+      role="group"
+      style="max-width: fit-content"
+    >
+      <a href="/components" class="btn btn-outline-info mr-2">All components</a>
+      <a href="/components/new" class="btn btn-outline-success ml-2"
+        >Create a new component</a
       >
-        <button class="btn btn-primary">Click to Copy</button>
-        <code> <%= newest.sanitizedCode.html || "" %> </code>
-      </div>
-      <div
-        class="code-section rounded flex-column ml-2 mr-2 col bg-dark text-light p-2 mt-2"
-      >
-        <button class="btn btn-primary">Click to Copy</button>
-        <code> <%= newest.sanitizedCode.css || "" %> </code>
-      </div>
-      <div
-        class="code-section rounded flex-column col bg-dark text-light p-2 mt-2"
-      >
-        <button class="btn btn-primary">Click to Copy</button>
-        <code> <%= newest.sanitizedCode.js || "" %> </code>
-      </div>
     </div>
   </div>
 </div>
-<% if(newest.user == user.id){ %>
-<div class="btn-group bg-light">
-  <a href="/components/<%= newest._id %>/edit" class="btn btn-warning">Edit</a>
-  <a href="/components/<%= newest._id %>/delete" class="btn btn-danger"
-    >Delete</a
-  >
+<div class="container p-4 rounded">
+  <h3 class="text-center display mb-4">5 Newest Components:</h3>
 </div>
-<% } %> <% } %>
+<div class="container p-3 rounded">
+  <div class="row">
+    <% if (components.length > 0) { %> <% components.forEach(component => { %>
 
-<script>
-  document
-    .getElementById("showCodeOnDashboard")
-    .addEventListener("click", function () {
-      this.textContent =
-        this.textContent === "Hide Code" ? "Show Code" : "Hide Code";
-      document.querySelectorAll(".code-section").forEach(function (el) {
-        el.classList.toggle("show");
-      });
-    });
-</script>
+    <div class="col">
+      <div class="card black text-white flex-column">
+        <img
+          src="<%= component.image || '' %>"
+          alt="<%= component.name || '' %>"
+          class="card-img-top"
+          width="100%"
+        />
 
+        <div class="card-body">
+          <small><%= component.createdAt.toDateString() %></small>
+          <h2 class="card-title h4">
+            <%= component.name.toUpperCase() || "" %>
+          </h2>
+          <p class="badge badge-danger align-self-end">
+            <%= component.codeType.toUpperCase() %> App
+          </p>
+          <p class="badge badge-info">
+            Created by
+            <a class="text-white" href="mailto:<%= component.user.email %>"
+              ><%= component.user.email %></a
+            >
+          </p>
+
+          <p class="card-text">
+            <em><strong>Description</strong></em
+            >: <u><%= component.description || "" %></u>
+          </p>
+
+          <p class="card-text text-primary">
+            <strong>Tags: <%= component.tags || "" %></strong>
+          </p>
+
+          <a
+            class="btn btn-warning w-100"
+            href="/components/<%= component._id %>"
+            >View</a
+          >
+        </div>
+        <% if(component.user == user.id){ %>
+        <div class="btn-group bg-light">
+          <a
+            href="/components/<%= component._id %>/edit"
+            class="btn btn-warning"
+            >Edit</a
+          >
+          <a
+            href="/components/<%= component._id %>/delete"
+            class="btn btn-danger"
+            >Delete</a
+          >
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <% }) %> <% } else { %>
+    <div class="container">
+      <h4 class="h4">NO COMPONENTS</h4>
+    </div>
+    <% } %>
+  </div>
+  <a class="mt-4 mb-4 btn btn-success w-100" href="/components">View All</a>
+</div>
 <%- include ("partials/footer") %>

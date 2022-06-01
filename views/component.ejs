@@ -1,11 +1,11 @@
 <%- include ("partials/header") %>
 <div class="jumbotron bg-light text-left rounded">
-  <div class="container d-flex flex-column bg-white p-4 rounded">
+  <div class="container d-flex flex-column p-4 rounded">
     <p class="badge badge-danger align-self-end">
       <%= component.codeType.toUpperCase() %> App
     </p>
     <h1 class="h1 mb-5"><%= component.name.toUpperCase() || "" %></h1>
-    <div class="bg-warning rounded pt-2 pb-2 pl-2">
+    <div class="bg-light rounded p-2">
       <p class="lead"><strong>Component: <%= component._id %></strong></p>
       <button class="btn btn-primary">Copy ID</button>
     </div>

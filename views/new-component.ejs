@@ -1,11 +1,11 @@
 <%- include ("partials/header") %>
-<div class="jumbotron text-center">
-  <div class="custom">
-    <p>Create a new component</p>
+<div class="myForm mt-5 container text-left">
+  <div class="card m-auto p-3 d-flex justify-content-center flex-column">
+    <h3 class="card-title">Create a new component</h3>
     <form action="/components/new" method="post">
       <div class="form-group">
         <label for="codeType">Select App Type:</label>
-        <select class="form-control" id="codeType" name="codeType">
+        <select class="form-control" id="codeType" required name="codeType">
           <option value="rails">Rails</option>
           <option value="next">Next</option>
         </select>
@@ -14,6 +14,7 @@
           type="text"
           class="form-control"
           id="name"
+          required
           name="name"
           placeholder="Name"
         />
@@ -24,6 +25,7 @@
           type="text"
           class="form-control"
           id="description"
+          required
           name="description"
           placeholder="Description"
         />
@@ -34,6 +36,7 @@
           type="text"
           class="form-control"
           id="html"
+          required
           name="html"
           placeholder="html"
         ></textarea>
@@ -42,6 +45,7 @@
           type="text"
           class="form-control"
           id="css"
+          required
           name="css"
           placeholder="css"
         ></textarea>
@@ -50,6 +54,7 @@
           type="text"
           class="form-control"
           id="js"
+          required
           name="js"
           placeholder="js"
         ></textarea>
@@ -60,6 +65,7 @@
           type="text"
           class="form-control"
           id="tags"
+          required
           name="tags"
           placeholder="Tags"
         />
@@ -70,6 +76,7 @@
           type="text"
           class="form-control"
           id="image"
+          required
           name="image"
           placeholder="Image"
           value="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/330px-Two_red_dice_01.svg.png"
@@ -80,5 +87,4 @@
   </div>
 </div>
 
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
 <%- include ("partials/footer") %>
